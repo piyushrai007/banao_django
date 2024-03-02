@@ -1,0 +1,54 @@
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .welcome-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .address {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .logout-button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background-color: #555;
+        }
+    </style>
+
+    <h2>Doctor Dashboard</h2>
+    <p class="welcome-message">Welcome, {{ user.username }}!</p>
+    <img class="profile-picture" src="{{ user.profile_picture.url }}" alt="Profile Picture">
+    <p class="address">Address: {{ user.address_line1 }}, {{ user.city }}, {{ user.state }}, {{ user.pincode }}</p>
+    <!-- Add more content here for the doctor dashboard -->
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="logout-button" type="submit">Logout</button>
+    </form>
+
+{% endblock %}
